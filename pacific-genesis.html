@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacific Genesis - Strategic Consulting</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0066cc;
+            --light-blue: #4a90e2;
+            --sky-blue: #7eb8f5;
+            --ice-blue: #e3f2fd;
+            --white: #ffffff;
+            --off-white: #f8fbff;
+            --accent: #0052a3;
+            --text-dark: #1a1a1a;
+            --text-gray: #5a5a5a;
+            --border: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideDown 0.8s ease-out;
+            border-bottom: 1px solid var(--border);
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .logo {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--light-blue);
+            font-weight: 400;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 3rem;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #4a90e2 0%, #7eb8f5 50%, #a8d5ff 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 102, 204, 0.2) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5.5rem;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            text-transform: none;
+        }
+
+        .hero h1 span {
+            display: block;
+            font-size: 3.2rem;
+            color: var(--white);
+            margin-top: 0.5rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            opacity: 0.95;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.9s both;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--white);
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            animation: fadeInUp 1s ease-out 1.2s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            background: var(--ice-blue);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 5%;
+            background: var(--off-white);
+            position: relative;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 100px,
+                    rgba(74, 144, 226, 0.02) 100px,
+                    rgba(74, 144, 226, 0.02) 101px
+                );
+            pointer-events: none;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            text-align: center;
+            margin-bottom: 5rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--primary-blue);
+            transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover::before {
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0, 102, 204, 0.12);
+            border-color: var(--light-blue);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            font-size: 1rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 5%;
+            background: var(--white);
+            color: var(--text-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(74, 144, 226, 0.08) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-dark);
+            line-height: 1.15;
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--text-gray);
+            font-weight: 400;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            display: block;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 5%;
+            background: var(--ice-blue);
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item h4 {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .contact-item a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: opacity 0.3s ease;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            opacity: 0.7;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+
+            .hero h1 span {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2.8rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Pacific <span>Genesis</span></div>
+        <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                Strategic Vision,
+                <span>Transformative Results</span>
+            </h1>
+            <p>Navigating complexity to create lasting value for ambitious organizations</p>
+            <a href="#contact" class="cta-button">Start Your Journey</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <h2 class="section-title">Our Expertise</h2>
+        <p class="section-subtitle">Comprehensive solutions for complex challenges</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-icon">📊</span>
+                <h3>Strategy & Growth</h3>
+                <p>We partner with leadership teams to develop bold, actionable strategies that drive sustainable growth and competitive advantage in evolving markets.</p>
+            </div>
+            
+            <div class="service-card">
+                <span class="service-icon">🔄</span>
+                <h3>Digital Transformation</h3>
+                <p>Navigate the digital landscape with confidence. We architect technology-enabled transformations that modernize operations and unlock new opportunities.</p>
+            </div>
+            
+            <div class="service-card">
+                <span class="service-icon">💡</span>
+                <h3>Innovation Advisory</h3>
+                <p>Build tomorrow's solutions today. Our innovation frameworks help you identify emerging opportunities and develop breakthrough products and services.</p>
+            </div>
+            
+            <div class="service-card">
+                <span class="service-icon">⚡</span>
+                <h3>Operational Excellence</h3>
+                <p>Optimize performance across your organization. We design and implement systems that enhance efficiency, reduce costs, and improve customer outcomes.</p>
+            </div>
+            
+            <div class="service-card">
+                <span class="service-icon">🎯</span>
+                <h3>Market Expansion</h3>
+                <p>Enter new markets with precision. Our data-driven approach to market analysis and entry strategy minimizes risk and maximizes impact.</p>
+            </div>
+            
+            <div class="service-card">
+                <span class="service-icon">👥</span>
+                <h3>Leadership Development</h3>
+                <p>Cultivate leadership capabilities that match your ambitions. We develop executive teams equipped to lead through change and complexity.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="about-content">
+            <h2>Where Vision Meets Execution</h2>
+            <p>Pacific Genesis was founded on the belief that exceptional consulting combines deep analytical rigor with genuine partnership. We don't just deliver recommendations—we stand beside you through implementation, celebrating wins and navigating challenges together.</p>
+            <p>Our multidisciplinary team brings decades of experience across industries, from Fortune 500 transformations to high-growth startups. We're united by intellectual curiosity, commitment to excellence, and the drive to create meaningful impact.</p>
+            
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number">150+</span>
+                    <span class="stat-label">Clients Served</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">$2B+</span>
+                    <span class="stat-label">Value Created</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">Client Retention</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="contact-content">
+            <h2>Let's Build Something Remarkable</h2>
+            <p>Ready to transform your organization? We'd love to explore how we can help you achieve your most ambitious goals.</p>
+            
+            <a href="mailto:hello@pacificgenesis.co" class="cta-button">Get In Touch</a>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h4>Email</h4>
+                    <a href="mailto:hello@pacificgenesis.co">hello@pacificgenesis.co</a>
+                </div>
+                <div class="contact-item">
+                    <h4>Phone</h4>
+                    <a href="tel:+14155551234">+1 (415) 555-1234</a>
+                </div>
+                <div class="contact-item">
+                    <h4>Location</h4>
+                    <p style="color: var(--text-gray); font-size: 1.1rem; font-weight: 500;">San Francisco, CA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Pacific Genesis Consulting. All rights reserved.</p>
+    </footer>
+</body>
+</html>
